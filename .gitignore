@@ -1,0 +1,4 @@
+*.log
+__pycache__/
+migrations/__pycache__/
+beep_boop.php
