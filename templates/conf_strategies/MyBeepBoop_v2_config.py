@@ -10,13 +10,14 @@ class config_strategy():
     arg_R = 0
     arg_P = 0.0
     arg_MR =  0.0
+
     arg_min_roi = 0.011
     my_force_exit = np.array([180, 0.002])
     
     stoploss = -0.2
     arg_max_loss = -0.003
-    my_stoploss = np.array([32, -0.00])
-    arg_stoploss =  0.0
+
+   
 #
 # for MACD strategy
     buy_cci_val =  -48
@@ -59,4 +60,5 @@ class config_strategy():
 #
 # for Hyper opt
     hyperopt =  False
+
 

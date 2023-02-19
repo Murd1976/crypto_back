@@ -61,3 +61,4 @@ class config_strategy():
 #
 # for Hyper opt
     hyperopt =  False
+
