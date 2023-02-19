@@ -9,6 +9,7 @@ class config_strategy():
     arg_R = 0
     arg_P = 0.0
     arg_MR = 0.0
+    my_force_exit = np.array([180, 0.002])
     stoploss = -0.1
     my_stoploss = np.array([32, -0.00])
     arg_stoploss =  0.0

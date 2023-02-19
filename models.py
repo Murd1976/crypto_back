@@ -41,8 +41,8 @@ class AllBackTests(models.Model	):
     text_log = models.TextField(verbose_name="Loggin text")
     hyperopt = models.BooleanField(verbose_name="Hyper opt", default=False)
     
-    my_force_exit_time = models.IntegerField(verbose_name="My Force exit time (after [n] min)", default = 0)
-    my_force_exit_value = models.DecimalField(max_digits=3, decimal_places=1, verbose_name="My Force exit value (after [n] min)", default = 0.0)
+    my_force_exit_time = models.IntegerField(verbose_name="My Force exit time (after [n] candles)", default = 0)
+    my_force_exit_value = models.DecimalField(max_digits=3, decimal_places=1, verbose_name="My Force exit value", default = 0.0)
     
     # for MACD strategy
     buy_cci = models.IntegerField(verbose_name="Buy side: CCI between -700 and 0:")

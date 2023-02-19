@@ -102,24 +102,24 @@ class BackTestForm(forms.Form):
     f_price_inc = forms.DecimalField(label="Price incriase in N candles (P):", initial=4.0,  min_value=-100, max_value=100, decimal_places=1, widget=forms.NumberInput( attrs={'size':'3'}), required=False)
     f_persent_same = forms.IntegerField(label="Persen of same candles (R):", initial=80, min_value=0, max_value=100, widget=forms.NumberInput( attrs={'size':'3'}), required=False)
     
-    f_min_roi_time1 = forms.IntegerField(initial=0, min_value=0, widget=forms.NumberInput( attrs={'size':'3'}), required=False)
-    f_min_roi_time2 = forms.IntegerField(initial=24, min_value=0, widget=forms.NumberInput( attrs={'size':'3'}), required=False)
-    f_min_roi_time3 = forms.IntegerField(initial=30, min_value=0, widget=forms.NumberInput( attrs={'size':'3'}), required=False)
-    f_min_roi_time4 = forms.IntegerField(initial=60, min_value=0, widget=forms.NumberInput( attrs={'size':'3'}), required=False)
-    f_min_roi_value1 = forms.DecimalField(initial=4.5, min_value=0, max_value=100, decimal_places=1, widget=forms.NumberInput( attrs={'size':'3'}), required=False)
-    f_min_roi_value2 = forms.DecimalField(initial=0, min_value=0, max_value=100, decimal_places=1, widget=forms.NumberInput( attrs={'size':'3'}), required=False)
-    f_min_roi_value3 = forms.DecimalField(initial=0, min_value=0, max_value=100, decimal_places=1, widget=forms.NumberInput( attrs={'size':'3'}), required=False)
-    f_min_roi_value4 = forms.DecimalField(initial=0, min_value=0, max_value=100, decimal_places=1, widget=forms.NumberInput( attrs={'size':'3'}), required=False)
+    f_min_roi_time1 = forms.IntegerField(initial=0, min_value=0, widget=forms.NumberInput( attrs={'size':'3'}))
+    f_min_roi_time2 = forms.IntegerField(initial=24, min_value=0, widget=forms.NumberInput( attrs={'size':'3'}))
+    f_min_roi_time3 = forms.IntegerField(initial=30, min_value=0, widget=forms.NumberInput( attrs={'size':'3'}))
+    f_min_roi_time4 = forms.IntegerField(initial=60, min_value=0, widget=forms.NumberInput( attrs={'size':'3'}))
+    f_min_roi_value1 = forms.DecimalField(initial=4.5, min_value=0, max_value=100, decimal_places=1, widget=forms.NumberInput( attrs={'size':'3'}))
+    f_min_roi_value2 = forms.DecimalField(initial=0, min_value=0, max_value=100, decimal_places=1, widget=forms.NumberInput( attrs={'size':'3'}))
+    f_min_roi_value3 = forms.DecimalField(initial=0, min_value=0, max_value=100, decimal_places=1, widget=forms.NumberInput( attrs={'size':'3'}))
+    f_min_roi_value4 = forms.DecimalField(initial=0, min_value=0, max_value=100, decimal_places=1, widget=forms.NumberInput( attrs={'size':'3'}))
     
 #    f_roi_flags = forms.MultipleChoiceField(label="Choise pairs part:", initial=1, choices=((1, "ROI 1"), (2, "ROI 2"), (3, "ROI 3"), (4, "ROI 4")), widget=forms.CheckboxSelectMultiple, required=False)
     
     f_des_stop_loss = forms.DecimalField(label="Dsired Stop-loss value (S):", min_value=0, max_value=100, initial=0.5, decimal_places=1, widget=forms.NumberInput( attrs={'size':'3'}), required=False)
     f_stop_loss = forms.DecimalField(label="Stop-loss (after 0 min):", min_value=0, max_value=100, initial=3.0, decimal_places=1, widget=forms.NumberInput( attrs={'size':'3'}), required=False)
-    f_my_stop_loss_time = forms.IntegerField(label="My Stop-loss (after [n] min):", initial=32,  min_value=0, widget=forms.NumberInput( attrs={'size':'3'}), required=False)
+    f_my_stop_loss_time = forms.IntegerField(label="My Stop-loss (after [n] min):", initial=32, min_value=0, widget=forms.NumberInput( attrs={'size':'3'}), required=False)
     f_my_stop_loss_value = forms.DecimalField(initial=0.1, min_value=0, max_value=100, decimal_places=1, widget=forms.NumberInput( attrs={'size':'3'}), required=False)
     
-    f_my_force_exit_time = forms.IntegerField(label="Force exit (after [n] min, with ROI):", initial=32,  min_value=0, widget=forms.NumberInput( attrs={'size':'3'}), required=False)
-    f_my_force_exit_value = forms.DecimalField(initial=0.1, min_value=0, max_value=100, decimal_places=1, widget=forms.NumberInput( attrs={'size':'3'}), required=False)
+    f_my_force_exit_time = forms.IntegerField(label="Force exit (after [n] candles, with ROI):", initial=32,  min_value=0, widget=forms.NumberInput( attrs={'size':'3'}), required=True)
+    f_my_force_exit_value = forms.DecimalField(initial=0.1, min_value=0, max_value=100, decimal_places=1, widget=forms.NumberInput( attrs={'size':'3'}), required=True)
     
     f_movement_roi = forms.DecimalField(label="Movement ROI (MR):", initial=2.5, min_value=0, max_value=100, decimal_places=1, widget=forms.NumberInput( attrs={'size':'3'}), required=False)
     

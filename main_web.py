@@ -847,7 +847,8 @@ class BackTestApp():
         
         f_pair_name = 'BTC_USDT'
         df_pair_1m = my_rep.get_pair_fdata(f_pair_name, '1m', client)
-        print(df_pair_1m)
+        print('For range detection used ', f_pair_name)
+        #print(df_pair_1m)
         start_date = df_pair_1m['date'].iloc[0]
         end_date = df_pair_1m['date'].iloc[-1]
         

@@ -9,6 +9,7 @@ class config_strategy():
     arg_R = 0
     arg_P = 0.0
     arg_MR =  0.0
+    my_force_exit = np.array([180, 0.002])
     stoploss = -0.1
     my_stoploss = np.array([32, -0.00])
     arg_stoploss =  0.0
@@ -25,7 +26,7 @@ class config_strategy():
     source_val = 'close'
     sma_source_enable_val = False
     sma_signal_enable_val = False
-    ema_signal_enable_val = False
+    ema_signal_enable_val = True
     
     arg_T = 0
     arg_min_roi = 0.0
