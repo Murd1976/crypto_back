@@ -16,6 +16,8 @@ class AllBackTests(models.Model	):
     owner = models.ForeignKey(AdvUser, verbose_name='Test owner.', on_delete = models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True, db_index=True, verbose_name='Test data.')
     
+    timeframe = models.CharField(max_length=10, verbose_name="Time frame:", default = '1m')
+    
     start_data = models.DateField(auto_now_add=False, verbose_name='Strat data')
     stop_data = models.DateField(auto_now_add=False, verbose_name='Stop data')
     

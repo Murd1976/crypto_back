@@ -286,7 +286,7 @@ class my_reports():
                 if ignor_flag == 0:
                     f.write(str(buf_str)+'\n')
         print('Cur_strategy: ', cur_strategy)            
-        if cur_strategy in ['MyBeepBoop', 'MyBeepBoop_v3', 'MyBeepBoop_v4']:
+        if cur_strategy in ['MyBeepBoop', 'MyBeepBoop_v2', 'MyBeepBoop_v3', 'MyBeepBoop_v4']:
             ignor_list = dict(ignor_)['MyBeepBoop'] #['buy_cci', 'sell_cci', 'buy_adx', 'buy_adx_enable', 'sell_adx', 'sell_adx_enable', 'buy_fastd', 'buy_fastd_enable', 'sell_fastd', 
                         #'sell_fastd_enable', 'buy_fastk', 'buy_fastk_enable', 'sell_fastk', 'sell_fastk_enable', 'buy_mfi', 'buy_mfi_enable', 
                         #'sell_mfi', 'sell_mfi_enable', 'sell_cci_scalp', 'sell_cci_scalp_enable']

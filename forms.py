@@ -61,6 +61,7 @@ class RegisterUserForm(forms.ModelForm):
 strategies_value = Available_strategies.strategies_names_tuple #[('0', 'none')]
 reports_value = [('0', 'none')]
 source_value = [('0', 'close'), ('1', 'open'), ('2', 'hight'), ('3', 'low')]
+timeframe_value = [('0', '1m'), ('1', '5m'), ('2', '15m'), ('3', '30m'), ('4', '1h')]
 
 #strategies_value = [('1', 'Strategy-1'), ('2', 'Strategy-2'), ('3', 'Strategy-3'), ('4', 'Strategy-4'), ('5', 'Strategy-5')]
 #reports_value = [('1', 'Report-1'), ('2', 'Report-2'), ('3', 'Report-3'), ('4', 'Report-4'), ('5', 'Report-5')]
@@ -91,6 +92,7 @@ class BackTestForm(forms.Form):
 #    f_strategies = forms.ChoiceField(label="Strategies:", initial='0', choices = strategies_value, required=True)
     f_strategies = forms.CharField(label="Strategy:", initial='none', disabled = True, required=True)
     f_reports = forms.ChoiceField(label="Test results:", initial='0', choices = reports_value, required=False)
+    f_timeframe = forms.ChoiceField(label="Timeframe:", initial='0', choices = timeframe_value, required=False)
     #YEARS= [x for x in range(2020,2022)]
     yyy = range(2022, datetime.datetime.now().year + 1)
     f_start_data = forms.DateField(label="Start data", initial= "2022-12-10", widget = forms.SelectDateWidget(years=yyy))
@@ -128,10 +130,10 @@ class BackTestForm(forms.Form):
 
     # for MACD strategy
     f_buy_cci = forms.IntegerField(label="Buy side: CCI between -700 and 0: ", initial= -48, min_value=-700, max_value=0, widget=forms.NumberInput( attrs={'size':'3'}), required=False)
-    f_sell_cci = forms.IntegerField(label="Sell side: CCI between 0 and 700: ", initial=687, min_value=0, max_value=700, widget=forms.NumberInput( attrs={'size':'3'}), required=False)
+    f_sell_cci = forms.IntegerField(label="Sell side: CCI between 0 and 700: ", initial=687, min_value=0, widget=forms.NumberInput( attrs={'size':'3'}), required=False)
     
-    f_fast_len = forms.IntegerField(label="Shorter-term period MA, between 2 and 51: ", initial= 12, min_value=2, max_value=51, widget=forms.NumberInput( attrs={'size':'3'}), required=False)
-    f_slow_len = forms.IntegerField(label="Longer-term period MA, between 3 and 52: ", initial=26, min_value=3, max_value=52, widget=forms.NumberInput( attrs={'size':'3'}), required=False)
+    f_fast_len = forms.IntegerField(label="Shorter-term period MA, between 2 and 51: ", initial= 12, min_value=2, widget=forms.NumberInput( attrs={'size':'3'}), required=False)
+    f_slow_len = forms.IntegerField(label="Longer-term period MA, between 3 and 52: ", initial=26, min_value=3, widget=forms.NumberInput( attrs={'size':'3'}), required=False)
     
     #for Beep Boop strategy
     f_ema_trend = forms.IntegerField(label="EMA Trend, between 30 and 600: ", initial=50, min_value=30, max_value=600, widget=forms.NumberInput( attrs={'size':'3'}), required=False)

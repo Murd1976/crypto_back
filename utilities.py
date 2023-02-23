@@ -1,7 +1,7 @@
 from django.template.loader import render_to_string
 from django.core.signing import Signer
 
-from ROOT.settings import ALLOWED_HOSTS
+from web_crypto_back.settings import ALLOWED_HOSTS
 
 signer = Signer()
 

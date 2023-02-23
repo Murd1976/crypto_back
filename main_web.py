@@ -404,6 +404,7 @@ class BackTestApp():
             stop_d = user_strategy_settings["f_stop_data"].split('T')[0].replace('-', '')
             print(start_d)
             print(stop_d)
+            print('Timeframe: ', user_strategy_settings["f_timeframe"])
             time_range = " --timerange=" + start_d.strip('-') + "-" + stop_d.strip('-')
             max_open_trades = ' --max-open-trades ' + str(user_strategy_settings["f_max_open_trades"])
             if user_strategy_settings["f_series_len"] > 0:
@@ -415,7 +416,7 @@ class BackTestApp():
 
             strategy = " -s "+ buf_str
             
-            run_str = "docker-compose run --rm freqtrade backtesting " + datadir + export + config + time_range + max_open_trades + export_filename + strategy
+            run_str = "docker-compose run --rm freqtrade backtesting " + datadir + export + config + time_range + max_open_trades + export_filename + strategy + ' -i ' + user_strategy_settings["f_timeframe"]
             print(run_str)
             self.list_info.append('Command line for run test:')
             self.list_info.append(run_str)
@@ -433,6 +434,13 @@ class BackTestApp():
         buf_str = '    start_data = ' + start_d
         strategy_settings = pd.concat([strategy_settings, pd.Series([buf_str])], ignore_index = True)
         buf_str = '    stop_data = ' + stop_d
+        strategy_settings = pd.concat([strategy_settings, pd.Series([buf_str])], ignore_index = True)
+        
+        buf_str = '#'
+        strategy_settings = pd.concat([strategy_settings, pd.Series([buf_str])], ignore_index = True)
+        buf_str = '    timeframe = ' + "'" + user_strategy_settings["f_timeframe"] + "'"
+        strategy_settings = pd.concat([strategy_settings, pd.Series([buf_str])], ignore_index = True)
+        buf_str = '#'
         strategy_settings = pd.concat([strategy_settings, pd.Series([buf_str])], ignore_index = True)
         
         buf_str = '    minimal_roi = { '
@@ -454,6 +462,12 @@ class BackTestApp():
         if user_strategy_settings["f_min_roi_value4"] > 0:
             buf_str = '        "' + str(user_strategy_settings["f_min_roi_time4"]) + '":  ' + self.normalyze_percents(user_strategy_settings["f_min_roi_value4"])
             strategy_settings = pd.concat([strategy_settings, pd.Series([buf_str])], ignore_index = True)
+            
+        if ((user_strategy_settings["f_min_roi_value1"] <= 0) & (user_strategy_settings["f_min_roi_value2"] <= 0) & 
+           (user_strategy_settings["f_min_roi_value3"] <= 0) & (user_strategy_settings["f_min_roi_value4"] <= 0)):
+            buf_str = '        "0":  10'
+            strategy_settings = pd.concat([strategy_settings, pd.Series([buf_str])], ignore_index = True)
+           
 
         buf_str = '    }'
         

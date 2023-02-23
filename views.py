@@ -251,6 +251,7 @@ def run_test_page(request):
     reports_list = list(zip(reports_index, reports_val))
     
     source_value = [('0', 'close'), ('1', 'open'), ('2', 'hight'), ('3', 'low')]
+    timeframe_value = [('0', '1m'), ('1', '5m'), ('2', '15m'), ('3', '30m'), ('4', '1h')]
 
     strategies_list = Available_strategies.strategies_names_tuple
     strategies_files = Available_strategies.strategies_file_tuple
@@ -262,7 +263,7 @@ def run_test_page(request):
                          'f_buy_cci', 'f_sell_cci', 'f_buy_adx', 'f_buy_adx_enable', 'f_sell_adx', 'f_sell_adx_enable', 'f_buy_fastd', 'f_buy_fastd_enable', 'f_sell_fastd', 'f_sell_fastd_enable', 
                          'f_buy_fastk', 'f_buy_fastk_enable', 'f_sell_fastk', 'f_sell_fastk_enable', 'f_buy_mfi', 'f_buy_mfi_enable', 'f_sell_mfi', 'f_sell_mfi_enable', 'f_sell_cci_scalp', 'f_sell_cci_scalp_enable',
                          'f_slow_len', 'f_fast_len', 'f_ema_trend', 'f_source', 'f_sma_source_enable', 'f_sma_signal_enable', 'f_ema_signal_enable', 'f_series_len_beepboop', 'f_min_roi_beepboop', 'f_loss_beepboop',
-                         'f_start_data', 'f_stop_data', 'f_start_d', 'f_stop_d', 'f_my_force_exit_time', 'f_my_force_exit_value']
+                         'f_start_data', 'f_stop_data', 'f_start_d', 'f_stop_d', 'f_my_force_exit_time', 'f_my_force_exit_value', 'f_timeframe']
     p = []
 
     data_bufer = DataBufer.objects.filter(name=request.user)
@@ -280,7 +281,7 @@ def run_test_page(request):
         if userform.is_valid():
             pp = p.copy()
             
-            for b in range(58):
+            for b in range(59):
                 pp.append('')
             strategy_settings = dict(list(zip(strategy_keys, pp)))
             strategy_settings = ui_utils.param_of_cur_strategy(strategy_settings)
@@ -433,6 +434,7 @@ def run_test_page(request):
             
             p.append(userform.cleaned_data["f_my_force_exit_time"])
             p.append(float(userform.cleaned_data["f_my_force_exit_value"]))
+            p.append(dict(timeframe_value)[userform.cleaned_data["f_timeframe"]])
                 
             print(p)
             print()
@@ -448,7 +450,7 @@ def run_test_page(request):
                                             buy_mfi= p[36], buy_mfi_enable= p[37], sell_mfi= p[38], sell_mfi_enable= p[39], 
                                             sell_cci_scalp= p[40], sell_cci_scalp_enable= p[41], slow_len= p[42], fast_len= p[43], ema_trend= p[44], source= p[45], 
                                             sma_source_enable= p[46], sma_signal_enable= p[47], ema_signal_enable= p[48], series_len_beepboop= p[49], min_roi_beepboop= p[50], loss_beepboop= p[51],
-                                            start_data = p[52], stop_data = p[53], my_force_exit_time = p[56], my_force_exit_value = p[57])
+                                            start_data = p[52], stop_data = p[53], my_force_exit_time = p[56], my_force_exit_value = p[57], timeframe = p[58])
                                             
             #for val in back_test_record:
                 #print(val)
@@ -474,7 +476,7 @@ def run_test_page(request):
             strategy_settings["f_text_log"] = str(request.user) + '/ ' + str(ui_utils.list_info)
 #            parts = BackTestForm(initial={"f_text_log":str(request.user) + '/ ' + str(ui_utils.list_info)})
             #print(len(strategy_settings))
-            #print(strategy_settings, '\n')
+            print(strategy_settings, '\n')
             parts = BackTestForm(initial= strategy_settings)
 
             parts = set_fields_enable(strategy_settings['f_strategies'], parts)
@@ -495,7 +497,7 @@ def run_test_page(request):
     text_buf = str(ui_utils.list_info)
 #    p.append( "min_roi_trailing_loss_4_4.py")
 #    p.append(dict(strategies_files)[user_strategy_choise])
-    for b in range(58):
+    for b in range(59):
         p.append('')
     strategy_settings = dict(list(zip(strategy_keys, p)))
     strategy_settings = ui_utils.param_of_cur_strategy(strategy_settings)
@@ -531,7 +533,7 @@ def check_date(start, stop, start_range, end_range):
         
     if start == stop:
         stop += datetime.timedelta(days=1)
-    print()
+    #print()
     if start < start_range.date():
         start_d = s1
     else:

@@ -17,7 +17,8 @@ class config_strategy():
     stoploss = -0.2
     arg_max_loss = -0.003
 
-   
+    my_stoploss = np.array([32, -0.00])
+    arg_stoploss =  0.0
 #
 # for MACD strategy
     buy_cci_val =  -48
