@@ -99,6 +99,7 @@ def set_fields_enable(strategy_name, parts):
             parts.fields['f_sma_source_enable'].disabled = True
             parts.fields['f_sma_signal_enable'].disabled = True
             parts.fields['f_ema_signal_enable'].disabled = True
+            parts.fields['f_min_macd'].disabled = True
         
         if strategy_name in ['MACD Strategy']:
             parts.fields['f_series_len'].disabled = True
@@ -136,6 +137,7 @@ def set_fields_enable(strategy_name, parts):
             parts.fields['f_min_roi_beepboop'].disabled = True
             parts.fields['f_loss_beepboop'].disabled = True
             parts.fields['f_series_len_beepboop'].disabled = True
+            parts.fields['f_min_macd'].disabled = True
      
         if strategy_name in ['Scalp Strategy']:
             parts.fields["f_series_len"].disabled = True
@@ -156,6 +158,7 @@ def set_fields_enable(strategy_name, parts):
             parts.fields['f_min_roi_beepboop'].disabled = True
             parts.fields['f_loss_beepboop'].disabled = True
             parts.fields['f_series_len_beepboop'].disabled = True
+            parts.fields['f_min_macd'].disabled = True
                 
         if strategy_name in ['BeepBoop Strategy', 'BeepBoop Strategy v2', 'BeepBoop Strategy v3', 'BeepBoop Strategy v4']:
             #parts.fields['f_persent_same'].disabled = True

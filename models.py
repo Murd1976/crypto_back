@@ -63,6 +63,7 @@ class AllBackTests(models.Model	):
     series_len_beepboop = models.IntegerField(verbose_name="Beep Boop Series length (T)", default= 4)
     min_roi_beepboop = models.DecimalField(verbose_name="Beep Boop ROI:", max_digits=3, decimal_places=1, default= 2.0)
     loss_beepboop = models.DecimalField(verbose_name="Beep Boop Loss", max_digits=3, decimal_places=1, default= 2.0)
+    min_macd = models.DecimalField(verbose_name="Minimal MACD:", max_digits=7, decimal_places=1, default= -0.001)
     
     
     #for Smooth Scalp strategy

@@ -348,6 +348,7 @@ class BackTestApp():
             self.list_info.append("Creating report, please wait... ")
             buf_str = backtest_file_name.split('.')
             
+            print('/' + self.server_directory + self.server_backtests_directory +self.server_user_directory + '/' + buf_str[0] + '.conf')
             conf_part = sftp.open ('/' + self.server_directory + self.server_backtests_directory +self.server_user_directory + '/' + buf_str[0] + '.conf', mode = 'r') # Путь к файлу config
             conf_obj = []
             for line in conf_part:
@@ -549,6 +550,8 @@ class BackTestApp():
         buf_str = '    slow_len =  ' + str(user_strategy_settings["f_slow_len"])
         strategy_settings = pd.concat([strategy_settings, pd.Series([buf_str])], ignore_index = True)
         buf_str = '    fast_len =  ' + str(user_strategy_settings["f_fast_len"])
+        strategy_settings = pd.concat([strategy_settings, pd.Series([buf_str])], ignore_index = True)
+        buf_str = '    min_macd =  ' + str(user_strategy_settings["f_min_macd"])
         strategy_settings = pd.concat([strategy_settings, pd.Series([buf_str])], ignore_index = True)
         
         buf_str = '#'
@@ -1099,6 +1102,16 @@ class BackTestApp():
                            else:
                                buf = False
                            user_strategy_settings["f_ema_signal_enable"] = buf
+                           
+                       if ('min_macd' in line):
+                           pars_str = line.split('=')
+                           if pars_str[0].strip() == 'min_macd':
+                               buf = pars_str[1].strip()
+                               if buf == "'none'":
+                                   user_strategy_settings["f_min_macd"] = 0
+                               else:
+                                   buf = (round(float(pars_str[1].strip()), 5))
+                                   user_strategy_settings["f_min_macd"] = buf
                            
                        #for Smooth Scalp strategy
                        if ('buy_adx_val' in line):

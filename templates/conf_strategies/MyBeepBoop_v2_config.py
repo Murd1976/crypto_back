@@ -28,6 +28,7 @@ class config_strategy():
     fast_len_val = 24
 
 # for Beep Boop strategy        
+    min_macd = -0.002
     ema_trend_val = 200
     source_val = 'close'
     

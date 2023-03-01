@@ -34,6 +34,7 @@ class config_strategy():
     arg_T = 0
     arg_min_roi = 0.0
     arg_max_loss = -0.0
+    min_macd = -0.00
 #
 # for Smooth Scalp strategy
     buy_adx_val =  32
